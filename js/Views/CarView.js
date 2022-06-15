@@ -1,17 +1,32 @@
-define(["jquery", "underscore", "backbone", "models/carModel"], function (
+define(["jquery", "underscore", "backbone", "event"], function (
   $,
   _,
   Backbone,
-  Car
+  vent
 ) {
   const CarView = Backbone.View.extend({
+    initialize: function (options) {
+      this.isSingle = options.isSingle;
+    },
     className: "car-item",
-
+    events: {
+      click: "onClickCar",
+    },
+    onClickCar: function () {
+      Backbone.history.navigate("cars/" + this.model.id, { trigger: true });
+    },
     render: function () {
-      const source = $("#carTemplate").html(); //get the template element
-      const template = _.template(source); // parse the template useing underscore js template method
-      this.$el.html(template(this.model.toJSON())); //inject our view to the template
-      return this;
+      if (this.isSingle) {
+        const source = $("#singleCarTemplate").html(); //get the template element
+        const template = _.template(source); // parse the template useing underscore js template method
+        this.$el.html(template(this.model.toJSON())); //inject our view to the template
+        return this;
+      } else {
+        const source = $("#carTemplate").html(); //get the template element
+        const template = _.template(source); // parse the template useing underscore js template method
+        this.$el.html(template(this.model.toJSON())); //inject our view to the template
+        return this;
+      }
     },
   });
   return CarView;

@@ -6,9 +6,9 @@ define(["underscore", "backbone", "models/carModel"], function (
   Backbone,
   Car
 ) {
-  const Cars = Backbone.Collection.extend({
+  const ServerCars = Backbone.Collection.extend({
     model: Car, // the model of elements that will be populated in this collection
     url: "https://myfakeapi.com//api/cars"
   });
-  return Cars;
+  return ServerCars;
 });

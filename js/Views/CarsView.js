@@ -9,10 +9,10 @@ define(["jquery", "underscore", "backbone", "views/carView"], function (
 
     tagName: "div",
     className: "cars-container",
-
+    
     render: function () {
       this.collection.each(function (car) {
-        const carView = new CarView({ model: car });
+        const carView = new CarView({ model: car, isSingle: false });
         this.$el.append(carView.render().$el);
       }, this);
       return this;

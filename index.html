@@ -14,11 +14,23 @@
     <script src="js/lib/modernizr-2.6.2.min.js"></script>
   </head>
   <body>
-    <div id="container"></div>
+    <div class="container" id="container"></div>
     <script id="carTemplate" type="text/template">
-      <img src="<%=img%>" alt="">
-         <p> <%= model %> </p>
-         <p> <%= year %> </p>
+      <img src="<%=img%>" alt=""/>
+      <p> <%= car %> <%= car_model %></p>
+      <p> <%= car_color %> - <%= car_model_year %></p>
+      <p> <%= price %> </p>
+    </script>
+    <script id="singleCarTemplate" type="text/template">
+          <img src="<%=img%>" alt=""/>
+          <p> <%= car %> <%= car_model %></p>
+          <p> <%= car_color %> - <%= car_model_year %></p>
+          <p> <%= price %> </p>
+          <%if(availability){%>
+            <p class="available">Available</p>
+          <%}else{%>
+            <p class="not-available">Not Available</p>
+          <%}%>
     </script>
     <script src="js/lib/require.js" data-main="js/main"></script>
   </body>
